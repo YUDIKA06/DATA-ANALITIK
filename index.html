@@ -12,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <!-- Google Fonts: Premium & Modern Combo -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@700&display=swap" rel="stylesheet">
     
     <!-- Tailwind Configuration -->
     <script>
@@ -22,6 +22,7 @@
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         serif: ['"Playfair Display"', 'serif'],
+                        poppins: ['"Poppins"', 'sans-serif'],
                     },
                     colors: {
                         primary: '#8E1616', // Deep, professional Crimson Red
@@ -148,14 +149,8 @@
             <div class="flex justify-between items-center">
                 
                 <!-- Logo -->
-                <a href="#" onclick="navigate('home'); return false;" class="flex items-center space-x-3 group">
-                    <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center text-xl shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform duration-300">
-                        <i class="fas fa-scale-balanced"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <h1 class="text-xl md:text-2xl font-bold text-primary font-serif leading-none">YLBHK CKI</h1>
-                        <p class="text-[10px] text-textMuted font-bold tracking-[0.2em] mt-1 uppercase">Jakarta Timur</p>
-                    </div>
+                <a href="#" onclick="navigate('home'); return false;" class="flex items-center group">
+                    <img src="image_3d42d5.png" alt="Logo YLBHK CKI" class="h-10 md:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -271,7 +266,7 @@
                         <span class="text-white/90 text-xs font-semibold tracking-[0.15em] uppercase">Lembaga Bantuan Hukum Terakreditasi</span>
                     </div>
                     
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] font-serif">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-[1.1] font-poppins">
                         Keadilan Hadir <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-200">Untuk Semua.</span>
                     </h1>
