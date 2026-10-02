@@ -197,7 +197,7 @@
                     <a href="#" onclick="navigate('contact'); return false;" class="nav-link px-4 py-2 text-sm font-semibold text-textMuted hover:text-primary transition-colors rounded-lg">Kontak</a>
                     
                     <div class="ml-2 pl-4 border-l border-gray-200 flex items-center gap-3">
-                        <button onclick="toggleSearch()" class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center text-textMuted hover:text-primary transition-colors">
+                        <button onclick="openSearchPage()" class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center text-textMuted hover:text-primary transition-colors">
                             <i class="fas fa-search"></i>
                         </button>
                         <a href="https://wa.me/62895358344915" target="_blank" class="bg-primary hover:bg-primary/90 text-white text-sm px-6 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-floating flex items-center gap-2">
@@ -403,7 +403,6 @@
                             <P> Memberikan perlindungan serta pendampingan hukum yang komprehensif bagi anak-anak yang terlibat dalam proses peradilan pidana demi menjamin hak-hak anak tetap terpenuhi.</P> 
                             <P><strong>3. Pelatihan Hukum Berkelanjutan & Ketenagakerjaan:</strong></p>                                
                             <p> Menyediakan program pembekalan dan pelatihan regulasi ketenagakerjaan bagi pekerja, serikat buruh, maupun pelaku usaha guna meminimalisasi konflik industrial.</p>
-
                         </div>
                     </div>
                     <div class="lg:w-1/2">
@@ -1050,6 +1049,27 @@
         </div>
     </main>
 
+    <!-- ========================================== -->
+    <!-- PAGE: SEARCH RESULTS -->
+    <!-- ========================================== -->
+    <main id="page-search" class="app-page hidden flex-grow bg-surface">
+        <div class="container mx-auto px-4 lg:px-8 py-12 max-w-7xl">
+            <!-- Search Input Bar -->
+            <div class="relative max-w-2xl mb-16">
+                <input id="pageSearchInput" type="text" oninput="performPageSearch(this.value)" placeholder="Ketik kata kunci pencarian (cth: yana, litigasi)..." class="w-full bg-white border border-gray-300 px-6 py-4 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm pr-12">
+                <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+            </div>
+            
+            <!-- Dynamic Heading matching the provided image -->
+            <h1 id="search-heading" class="text-3xl md:text-4xl font-bold text-textDark font-serif mb-8 hidden">Search Results for <span id="search-keyword-display"></span></h1>
+            
+            <!-- Grid Output -->
+            <div id="search-results-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cards injected here -->
+            </div>
+        </div>
+    </main>
+
     <footer class="bg-white border-t border-gray-100 pt-20 pb-10 mt-auto">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -1102,20 +1122,6 @@
         </div>
     </footer>
 
-    <div id="searchModal" class="hidden fixed inset-0 bg-dark/60 backdrop-blur-md z-[70] flex items-start justify-center pt-32 px-4 transition-opacity">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-2 relative flex flex-col">
-            <div class="flex items-center p-2">
-                <i class="fas fa-search text-gray-400 ml-4 text-xl"></i>
-                <input id="searchInput" type="text" oninput="performSearch(this.value)" placeholder="Ketik kata kunci pencarian..." class="w-full border-none px-4 py-4 focus:outline-none focus:ring-0 text-lg rounded-xl text-textDark font-medium">
-                <button onclick="toggleSearch()" class="bg-surface text-textMuted px-6 py-3 m-1 rounded-xl hover:bg-gray-200 transition-colors font-semibold">
-                    Tutup
-                </button>
-            </div>
-            <!-- Search Results Container -->
-            <div id="searchResults" class="hidden flex-col gap-2 px-6 pb-6 max-h-[50vh] overflow-y-auto border-t border-gray-100 pt-4"></div>
-        </div>
-    </div>
-
     <script>
         let previousPage = 'home'; // Untuk mencatat halaman sebelum membuka photo detail
 
@@ -1127,17 +1133,19 @@
             setTimeout(() => msgBox.classList.add('hidden'), 5000);
         }
 
-        function toggleSearch() {
-            const modal = document.getElementById('searchModal');
-            modal.classList.toggle('hidden');
-            if(!modal.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('searchInput').focus(), 100);
-            } else {
-                // Reset hasil pencarian saat modal ditutup
-                document.getElementById('searchInput').value = '';
-                document.getElementById('searchResults').innerHTML = '';
-                document.getElementById('searchResults').classList.add('hidden');
-            }
+        function openSearchPage() {
+            navigate('search');
+            setTimeout(() => {
+                const input = document.getElementById('pageSearchInput');
+                if(input) {
+                    input.focus();
+                    if(input.value) performPageSearch(input.value);
+                }
+            }, 100);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
         const pageTitles = {
@@ -1148,67 +1156,65 @@
             'kerjasama': 'Kerja Sama',
             'penyuluhan': 'Penyuluhan',
             'galeri': 'Galeri Kegiatan',
-            'contact': 'Kontak'
+            'contact': 'Kontak',
+            'search': 'Pencarian'
         };
 
-        function performSearch(query) {
-            const resultsContainer = document.getElementById('searchResults');
+        function performPageSearch(query) {
+            const resultsContainer = document.getElementById('search-results-grid');
+            const heading = document.getElementById('search-heading');
+            const keywordDisplay = document.getElementById('search-keyword-display');
             const q = query.toLowerCase().trim();
             
             if (q.length < 2) {
                 resultsContainer.innerHTML = '';
-                resultsContainer.classList.add('hidden');
+                heading.classList.add('hidden');
                 return;
             }
+
+            heading.classList.remove('hidden');
+            keywordDisplay.innerText = query;
 
             let resultsHTML = '';
             let hasResults = false;
 
-            // Cari kata kunci di seluruh halaman (kecuali halaman detail foto dinamis)
+            // Cari kata kunci di seluruh halaman (menggunakan textContent agar elemen tersembunyi tetap terbaca)
             document.querySelectorAll('.app-page').forEach(page => {
-                if(page.id === 'page-photo-detail') return;
+                if(page.id === 'page-photo-detail' || page.id === 'page-search') return;
 
-                const text = page.innerText.toLowerCase();
-                if (text.includes(q)) {
+                let text = page.textContent || "";
+                text = text.replace(/\s+/g, ' '); // Bersihkan spasi ekstra
+
+                if (text.toLowerCase().includes(q)) {
                     hasResults = true;
                     const pageId = page.id.replace('page-', '');
                     const title = pageTitles[pageId] || 'Halaman';
                     
-                    // Buat potongan teks (snippet) untuk menampilkan letak kata kunci
-                    const index = text.indexOf(q);
-                    const start = Math.max(0, index - 40);
-                    const end = Math.min(text.length, index + 40);
-                    let snippet = page.innerText.substring(start, end).replace(/\n/g, ' ');
+                    const index = text.toLowerCase().indexOf(q);
+                    const start = Math.max(0, index - 80);
+                    const end = Math.min(text.length, index + 160);
+                    let snippet = text.substring(start, end);
                     
-                    // Beri highlight (warna kuning) pada kata kunci di snippet
+                    // Highlight kata kunci
                     const regex = new RegExp(q, 'gi');
-                    snippet = snippet.replace(regex, match => `<span class="bg-yellow-200 font-bold text-primary px-1 rounded">${match}</span>`);
+                    snippet = snippet.replace(regex, match => `<span class="bg-yellow-200 font-bold text-primary">${match}</span>`);
 
+                    // Generate UI sesuai gambar yang diberikan (Grid 3 kolom)
                     resultsHTML += `
-                        <div onclick="goToSearchResult('${pageId}')" class="p-4 hover:bg-red-50 rounded-xl cursor-pointer transition-colors border border-gray-50 shadow-sm">
-                            <h4 class="font-bold text-primary mb-1 text-sm"><i class="fas fa-chevron-right text-[10px] mr-1"></i> ${title}</h4>
-                            <p class="text-sm text-textMuted leading-relaxed">...${snippet}...</p>
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full cursor-pointer hover:shadow-md transition-all group" onclick="navigate('${pageId}')">
+                            <h3 class="text-xl font-bold text-textDark mb-4 group-hover:text-primary transition-colors">${title}</h3>
+                            <p class="text-sm text-textMuted leading-relaxed mb-8 flex-grow">...${snippet}...</p>
+                            <div class="text-[11px] font-bold uppercase tracking-widest text-textDark">ADMIN / OCT 2, 2026</div>
                         </div>
                     `;
                 }
             });
 
             if (!hasResults) {
-                resultsHTML = `<div class="p-4 text-center text-textMuted font-medium">Tidak ada hasil yang ditemukan untuk "${query}"</div>`;
+                resultsContainer.innerHTML = `<div class="col-span-full text-textMuted font-medium py-4">Tidak ada hasil yang ditemukan untuk "${query}". Coba kata kunci lain.</div>`;
+            } else {
+                resultsContainer.innerHTML = resultsHTML;
             }
-
-            resultsContainer.innerHTML = resultsHTML;
-            resultsContainer.classList.remove('hidden');
-            resultsContainer.style.display = 'flex';
-        }
-
-        function goToSearchResult(pageId) {
-            toggleSearch(); // Tutup modal pencarian otomatis
-            navigate(pageId); // Arahkan ke halaman hasil
-        }
-
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
         function filterGallery(category, btnElement) {
