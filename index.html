@@ -6,7 +6,7 @@
     <title>YLBHK CKI - Jakarta Timur</title>
 
      <!-- Mengganti Logo Vercel dengan Logo YLBHK -->
-<link rel="icon" type="image/png" href="favicon.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicon.png" sizes="144x144">
 <link rel="apple-touch-icon" href="favicon.png">
     
     <!-- Load Tailwind CSS -->
@@ -1011,7 +1011,7 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- PAGE: PHOTO DETAIL (Khusus Gambar Klik) -->
+    <!-- PAGE: PHOTO DETAIL (Khusus Gambar & Video Klik) -->
     <!-- ========================================== -->
     <main id="page-photo-detail" class="app-page hidden flex-grow bg-white">
         <div class="container mx-auto px-4 lg:px-8 py-10 max-w-5xl">
@@ -1021,9 +1021,13 @@
             <div class="text-center mb-8">
                 <h1 id="detailPhotoTitle" class="text-3xl md:text-5xl font-bold text-textDark font-poppins mb-4">Judul Foto</h1>
             </div>
-            <div class="rounded-3xl overflow-hidden shadow-2xl mb-8 flex justify-center bg-surface p-4 border border-gray-200 min-h-[50vh]">
-                <img id="detailPhotoImage" src="" alt="Detail" class="max-w-full h-auto max-h-[70vh] object-contain">
+            
+            <!-- Diubah agar bisa menampung gambar ATAU iframe video -->
+            <div id="mediaContainer" class="rounded-3xl overflow-hidden shadow-2xl mb-8 flex flex-col items-center justify-center bg-surface p-4 border border-gray-200 min-h-[50vh] w-full relative">
+                <img id="detailPhotoImage" src="" alt="Detail" class="max-w-full h-auto max-h-[70vh] object-contain hidden">
+                <iframe id="detailVideoIframe" src="" class="w-full aspect-video max-h-[70vh] rounded-xl hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
+            
             <div class="text-center max-w-3xl mx-auto bg-surface p-6 rounded-2xl border border-gray-100">
                 <p id="detailPhotoDesc" class="text-textDark text-lg leading-relaxed font-medium">Deskripsi Foto</p>
             </div>
@@ -1261,13 +1265,39 @@
             });
         }
 
+        // [FUNGSI DIMODIFIKASI] - Mengontrol tampilnya Foto
         function openPhotoDetail(imgSrc, title, desc) {
-            // Pasang data ke halaman detail foto
-            document.getElementById('detailPhotoImage').src = imgSrc;
+            const imgEl = document.getElementById('detailPhotoImage');
+            const videoEl = document.getElementById('detailVideoIframe');
+            
+            // Tampilkan elemen gambar, sembunyikan video
+            imgEl.src = imgSrc;
+            imgEl.classList.remove('hidden');
+            
+            videoEl.src = ''; // Matikan video jika sedang berjalan
+            videoEl.classList.add('hidden');
+            
             document.getElementById('detailPhotoTitle').innerText = title;
             document.getElementById('detailPhotoDesc').innerText = desc;
             
-            // Pindah ke page photo detail
+            navigate('photo-detail');
+        }
+
+        // [FUNGSI BARU] - Khusus untuk memutar Video dari YouTube
+        function openVideoDetail(videoUrl, title, desc) {
+            const imgEl = document.getElementById('detailPhotoImage');
+            const videoEl = document.getElementById('detailVideoIframe');
+            
+            // Sembunyikan elemen gambar, tampilkan elemen video
+            imgEl.src = '';
+            imgEl.classList.add('hidden');
+            
+            videoEl.src = videoUrl + '?autoplay=1'; // autoplay agar langsung main
+            videoEl.classList.remove('hidden');
+            
+            document.getElementById('detailPhotoTitle').innerText = title;
+            document.getElementById('detailPhotoDesc').innerText = desc;
+            
             navigate('photo-detail');
         }
 
@@ -1283,6 +1313,12 @@
                 page.classList.add('hidden');
                 page.style.animation = 'none'; // reset animation
             });
+
+            // [TAMBAHAN BARU] - Menghentikan video jika kita pindah halaman lain
+            if (pageId !== 'photo-detail') {
+                const videoEl = document.getElementById('detailVideoIframe');
+                if (videoEl) videoEl.src = ''; 
+            }
 
             // Show targeted page and trigger animation
             const targetPage = document.getElementById('page-' + pageId) || document.getElementById('page-home');
