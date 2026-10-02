@@ -1096,14 +1096,16 @@
     </footer>
 
     <div id="searchModal" class="hidden fixed inset-0 bg-dark/60 backdrop-blur-md z-[70] flex items-start justify-center pt-32 px-4 transition-opacity">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-2 relative">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-2 relative flex flex-col">
             <div class="flex items-center p-2">
                 <i class="fas fa-search text-gray-400 ml-4 text-xl"></i>
-                <input type="text" placeholder="Ketik kata kunci pencarian..." class="w-full border-none px-4 py-4 focus:outline-none focus:ring-0 text-lg rounded-xl text-textDark font-medium">
+                <input id="searchInput" type="text" oninput="performSearch(this.value)" placeholder="Ketik kata kunci pencarian..." class="w-full border-none px-4 py-4 focus:outline-none focus:ring-0 text-lg rounded-xl text-textDark font-medium">
                 <button onclick="toggleSearch()" class="bg-surface text-textMuted px-6 py-3 m-1 rounded-xl hover:bg-gray-200 transition-colors font-semibold">
                     Tutup
                 </button>
             </div>
+            <!-- Search Results Container -->
+            <div id="searchResults" class="hidden flex-col gap-2 px-6 pb-6 max-h-[50vh] overflow-y-auto border-t border-gray-100 pt-4"></div>
         </div>
     </div>
 
@@ -1122,8 +1124,80 @@
             const modal = document.getElementById('searchModal');
             modal.classList.toggle('hidden');
             if(!modal.classList.contains('hidden')) {
-                setTimeout(() => modal.querySelector('input').focus(), 100);
+                setTimeout(() => document.getElementById('searchInput').focus(), 100);
+            } else {
+                // Reset hasil pencarian saat modal ditutup
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').innerHTML = '';
+                document.getElementById('searchResults').classList.add('hidden');
             }
+        }
+
+        const pageTitles = {
+            'home': 'Beranda',
+            'tentang-kami': 'Tentang Kami',
+            'litigasi': 'Litigasi',
+            'non-litigasi': 'Non Litigasi',
+            'kerjasama': 'Kerja Sama',
+            'penyuluhan': 'Penyuluhan',
+            'galeri': 'Galeri Kegiatan',
+            'contact': 'Kontak'
+        };
+
+        function performSearch(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            const q = query.toLowerCase().trim();
+            
+            if (q.length < 2) {
+                resultsContainer.innerHTML = '';
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+
+            let resultsHTML = '';
+            let hasResults = false;
+
+            // Cari kata kunci di seluruh halaman (kecuali halaman detail foto dinamis)
+            document.querySelectorAll('.app-page').forEach(page => {
+                if(page.id === 'page-photo-detail') return;
+
+                const text = page.innerText.toLowerCase();
+                if (text.includes(q)) {
+                    hasResults = true;
+                    const pageId = page.id.replace('page-', '');
+                    const title = pageTitles[pageId] || 'Halaman';
+                    
+                    // Buat potongan teks (snippet) untuk menampilkan letak kata kunci
+                    const index = text.indexOf(q);
+                    const start = Math.max(0, index - 40);
+                    const end = Math.min(text.length, index + 40);
+                    let snippet = page.innerText.substring(start, end).replace(/\n/g, ' ');
+                    
+                    // Beri highlight (warna kuning) pada kata kunci di snippet
+                    const regex = new RegExp(q, 'gi');
+                    snippet = snippet.replace(regex, match => `<span class="bg-yellow-200 font-bold text-primary px-1 rounded">${match}</span>`);
+
+                    resultsHTML += `
+                        <div onclick="goToSearchResult('${pageId}')" class="p-4 hover:bg-red-50 rounded-xl cursor-pointer transition-colors border border-gray-50 shadow-sm">
+                            <h4 class="font-bold text-primary mb-1 text-sm"><i class="fas fa-chevron-right text-[10px] mr-1"></i> ${title}</h4>
+                            <p class="text-sm text-textMuted leading-relaxed">...${snippet}...</p>
+                        </div>
+                    `;
+                }
+            });
+
+            if (!hasResults) {
+                resultsHTML = `<div class="p-4 text-center text-textMuted font-medium">Tidak ada hasil yang ditemukan untuk "${query}"</div>`;
+            }
+
+            resultsContainer.innerHTML = resultsHTML;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.style.display = 'flex';
+        }
+
+        function goToSearchResult(pageId) {
+            toggleSearch(); // Tutup modal pencarian otomatis
+            navigate(pageId); // Arahkan ke halaman hasil
         }
 
         function toggleMobileMenu() {
