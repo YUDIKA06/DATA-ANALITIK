@@ -27,9 +27,9 @@
                         primary: '#8E1616', // Deep, professional Crimson Red
                         secondary: '#D4AF37', // Elegant Champagne Gold
                         surface: '#FAFAFA', // Off-white for sleek backgrounds
-                        dark: '#0F172A', // Slate 900 for modern dark sections
-                        textDark: '#1E293B',
-                        textMuted: '#64748B'
+                        dark: '#000000', // Diubah dari biru dongker (#0F172A) menjadi Hitam pekat
+                        textDark: '#111111', // Hitam netral untuk teks
+                        textMuted: '#666666' // Abu-abu netral
                     },
                     boxShadow: {
                         'soft': '0 4px 40px -10px rgba(0,0,0,0.05)',
@@ -640,7 +640,7 @@
                 </div>
             </div>
 
-            <!-- Komitmen Kami -->
+            <!-- Komitmen Kami (Menggunakan Hitam Solid) -->
             <div class="bg-dark rounded-[2.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
                 <!-- Background Pattern/Icon -->
                 <div class="absolute -right-20 -top-20 text-[15rem] text-white/5 transform rotate-12 pointer-events-none"><i class="fas fa-handshake"></i></div>
@@ -703,8 +703,6 @@
         </div>
     </main>
 
-    <!-- (Skip filling out other service pages with identical structures for brevity, they function exactly the same conceptually. Moving to Galeri) -->
-    
     <main id="page-galeri" class="app-page hidden flex-grow bg-white">
         <div class="bg-surface py-20 border-b border-gray-100">
             <div class="container mx-auto px-4 lg:px-8 text-center">
@@ -763,8 +761,8 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 
-                <!-- Buka di Maps Button Overlay -->
-                <a href="https://share.google/FGrZLUmAkYgilC7Rr" target="_blank" class="absolute top-4 left-4 bg-white text-blue-600 hover:text-blue-800 font-medium px-4 py-2 shadow-md rounded flex items-center gap-2 text-sm z-10 transition-colors border border-gray-100">
+                <!-- Buka di Maps Button Overlay (Warna Teks diubah agar tidak ada sisa biru) -->
+                <a href="https://share.google/FGrZLUmAkYgilC7Rr" target="_blank" class="absolute top-4 left-4 bg-white text-black hover:text-gray-800 font-bold px-4 py-2 shadow-md rounded flex items-center gap-2 text-sm z-10 transition-colors border border-gray-100">
                     Buka di Maps <i class="fas fa-external-link-alt text-[10px]"></i>
                 </a>
             </div>
