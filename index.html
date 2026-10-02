@@ -429,17 +429,17 @@
                     <!-- Pengurus Cabang -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
                         <div class="text-center group">
-                            <img src="wanto.jpeg" alt="Ketua Cabang" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300">
+                            <img src="wanto.jpeg" alt="Ketua Cabang" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300" onerror="this.src='https://placehold.co/400?text=Wanto'">
                             <h4 class="font-bold text-lg text-textDark">WANTO ALHAKIM, S.H.</h4>
                             <p class="text-textMuted text-sm mt-1">Ketua Cabang Jaktim</p>
                         </div>
                         <div class="text-center group">
-                            <img src="firmansyah.jpeg" alt="Sekretaris" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300">
+                            <img src="firmansyah.jpeg" alt="Sekretaris" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300" onerror="this.src='https://placehold.co/400?text=Firmansyah'">
                             <h4 class="font-bold text-lg text-textDark">FIRMANSYAH PUTRA, S.H.</h4>
                             <p class="text-textMuted text-sm mt-1">Sekretaris</p>
                         </div>
                         <div class="text-center group">
-                            <img src="mustika.jpeg" alt="Bendahara" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300">
+                            <img src="mustika.jpeg" alt="Bendahara" class="rounded-full w-32 h-32 mx-auto object-cover shadow-lg mb-5 ring-4 ring-transparent group-hover:ring-red-50 transition-all duration-300" onerror="this.src='https://placehold.co/400?text=Mustika'">
                             <h4 class="font-bold text-lg text-textDark">MUSTIKA AKSARI, S.H.</h4>
                             <p class="text-textMuted text-sm mt-1">Bendahara</p>
                         </div>
@@ -466,20 +466,22 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Right Images -->
+                    <!-- Right Images (Diubah menjadi clickable) -->
                     <div class="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                         <!-- Domisili -->
-                        <div class="bg-[#f5f5f5] p-5 pb-6">
+                        <div class="bg-[#f5f5f5] p-5 pb-6 rounded-xl hover:shadow-md transition-shadow">
                             <h4 class="text-center text-textDark text-lg mb-4 font-medium">Legalitas Domisili</h4>
-                            <div class="bg-white p-2 border border-gray-200 shadow-sm">
+                            <div class="bg-white p-2 border border-gray-200 shadow-sm cursor-pointer hover:shadow-floating transition-all duration-300" 
+                                 onclick="openPhotoDetail('https://placehold.co/400x550/ffffff/333333?text=Dokumen+Domisili', 'Legalitas Domisili', 'Dokumen pengesahan Domisili resmi Yayasan Lembaga Bantuan Hukum & Konsultasi Citra Keadilan Indonesia.')">
                                 <img src="https://placehold.co/400x550/ffffff/333333?text=Dokumen+Domisili" alt="Legalitas Domisili" class="w-full h-auto">
                             </div>
                         </div>
                         <!-- Kemenkumham -->
-                        <div class="bg-[#f5f5f5] p-5 pb-6">
+                        <div class="bg-[#f5f5f5] p-5 pb-6 rounded-xl hover:shadow-md transition-shadow">
                             <h4 class="text-center text-textDark text-lg mb-4 font-medium">Legalitas Kemenkumham</h4>
-                            <div class="bg-white p-2 border border-gray-200 shadow-sm">
-                                <img src="Legalitas Kemenkumham.jpg" class="w-full h-auto">
+                            <div class="bg-white p-2 border border-gray-200 shadow-sm cursor-pointer hover:shadow-floating transition-all duration-300"
+                                 onclick="openPhotoDetail('Legalitas Kemenkumham.jpg', 'Legalitas Kemenkumham', 'Dokumen Pengesahan dari Kementrian Hukum dan Hak Asasi Manusia (KEMENKUMHAM) Republik Indonesia.')">
+                                <img src="Legalitas Kemenkumham.jpg" onerror="this.src='https://placehold.co/400x550/ffffff/333333?text=Legalitas+Kemenkumham'" class="w-full h-auto">
                             </div>
                         </div>
                     </div>
@@ -492,47 +494,51 @@
             <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
                 <div class="mb-12 text-center">
                     <h2 class="text-3xl font-bold text-textDark font-poppins mb-2">Akreditasi & Penghargaan</h2>
-                    <p class="text-textMuted">Bukti komitmen dan profesionalitas kami.</p>
+                    <p class="text-textMuted">Bukti komitmen dan profesionalitas kami. (Klik foto untuk memperbesar)</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                    <!-- Item 1 -->
-                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300">
-                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider">Sertifikat Kerjasama</h4>
+                    <!-- Item 1 (Clickable) -->
+                    <div onclick="openPhotoDetail('Sertifikat Kerjasama.jpg', 'Sertifikat Kerjasama', 'Sertifikat kerjasama dukungan sebagai bentuk mitra kerjasama antar Sekolah Tinggi Ilmu Hukum IBLAM dan YLBHK-CKI.')" 
+                         class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300 cursor-pointer group">
+                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider group-hover:text-primary transition-colors">Sertifikat Kerjasama</h4>
                         <div class="w-full h-48 sm:h-56 mb-4 overflow-hidden rounded bg-gray-50 flex items-center justify-center">
-                            <img src="Sertifikat Kerjasama.jpg" class="h-full w-auto object-contain hover:scale-105 transition-transform duration-500">
+                            <img src="Sertifikat Kerjasama.jpg" onerror="this.src='https://placehold.co/400x550/ffffff/333333?text=Kerjasama'" class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <p class="text-[11px] sm:text-xs text-textMuted leading-snug text-center">
                             Sertifikat kerjasama dukungan sebagai bentuk mitra kerjasama antar Sekolah Tinggi Ilmu Hukum IBLAM dan YLBHK-CKI.
                         </p>
                     </div>
                     
-                    <!-- Item 2 -->
-                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300">
-                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider">Piagam Penghargaan</h4>
+                    <!-- Item 2 (Clickable) -->
+                    <div onclick="openPhotoDetail('Piagam Penghargaan.jpg', 'Piagam Penghargaan', 'Pelaksanaan Bimbingan Kepribadian Klien Balai Pemasyarakatan Kelas 1 Jakarta Pusat.')" 
+                         class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300 cursor-pointer group">
+                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider group-hover:text-primary transition-colors">Piagam Penghargaan</h4>
                         <div class="w-full h-48 sm:h-56 mb-4 overflow-hidden rounded bg-gray-50 flex items-center justify-center">
-                            <img src="Piagam Penghargaan.jpg" class="h-full w-auto object-contain hover:scale-105 transition-transform duration-500">
+                            <img src="Piagam Penghargaan.jpg" onerror="this.src='https://placehold.co/400x550/ffffff/333333?text=Penghargaan'" class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <p class="text-[11px] sm:text-xs text-textMuted leading-snug text-center">
                             Pelaksanaan Bimbingan Kepribadian Klien Balai Pemasyarakatan Kelas 1 Jakarta Pusat.
                         </p>
                     </div>
 
-                    <!-- Item 3 -->
-                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300">
-                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider">Sertifikat Penghargaan</h4>
+                    <!-- Item 3 (Clickable) -->
+                    <div onclick="openPhotoDetail('Sertifikat Penghargaan.jpg', 'Sertifikat Penghargaan', 'Kerja sama dalam program bimbingan klien di BAPAS Kelas 1 Jakarta Pusat.')" 
+                         class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300 cursor-pointer group">
+                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider group-hover:text-primary transition-colors">Sertifikat Penghargaan</h4>
                         <div class="w-full h-48 sm:h-56 mb-4 overflow-hidden rounded bg-gray-50 flex items-center justify-center">
-                            <img src="Sertifikat Penghargaan.jpg" class="h-full w-auto object-contain hover:scale-105 transition-transform duration-500">
+                            <img src="Sertifikat Penghargaan.jpg" onerror="this.src='https://placehold.co/400x550/ffffff/333333?text=Penghargaan'" class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <p class="text-[11px] sm:text-xs text-textMuted leading-snug text-center">
                             Kerja sama dalam program bimbingan klien di BAPAS Kelas 1 Jakarta Pusat.
                         </p>
                     </div>
 
-                    <!-- Item 4 -->
-                    <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300">
-                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider">Sertifikat Akreditasi</h4>
+                    <!-- Item 4 (Clickable) -->
+                    <div onclick="openPhotoDetail('Sertifikat Akreditasi.jpg', 'Sertifikat Akreditasi', 'Sebagai pemberi bantuan hukum periode tahun 2025 s.d 2027 yang telah teverifikasi dan akreditasi B.')" 
+                         class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-md transition-all duration-300 cursor-pointer group">
+                        <h4 class="font-bold text-sm text-textDark mb-3 text-center uppercase tracking-wider group-hover:text-primary transition-colors">Sertifikat Akreditasi</h4>
                         <div class="w-full h-48 sm:h-56 mb-4 overflow-hidden rounded bg-gray-50 flex items-center justify-center">
-                            <img src="Sertifikat Akreditasi.jpg" class="h-full w-auto object-contain hover:scale-105 transition-transform duration-500">
+                            <img src="Sertifikat Akreditasi.jpg" onerror="this.src='https://placehold.co/400x550/ffffff/333333?text=Akreditasi'" class="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <p class="text-[11px] sm:text-xs text-textMuted leading-snug text-center">
                             Sebagai pemberi bantuan hukum periode tahun 2025 s.d 2027 yang telah teverifikasi dan akreditasi B.
@@ -698,6 +704,9 @@
         </div>
     </main>
 
+    <!-- ========================================== -->
+    <!-- PAGE: GALERI -->
+    <!-- ========================================== -->
     <main id="page-galeri" class="app-page hidden flex-grow bg-white">
         <div class="bg-surface py-20 border-b border-gray-100">
             <div class="container mx-auto px-4 lg:px-8 text-center">
@@ -707,37 +716,46 @@
         </div>
         
         <div class="container mx-auto px-4 lg:px-8 py-20 max-w-6xl">
-            <!-- Sleek Filter -->
-            <div class="flex flex-wrap justify-center gap-3 mb-16">
-                <button class="px-6 py-2.5 bg-dark text-white rounded-full text-sm font-semibold transition-colors">Semua</button>
-                <button class="px-6 py-2.5 bg-surface text-textMuted hover:text-dark rounded-full text-sm font-semibold transition-colors">Litigasi</button>
-                <button class="px-6 py-2.5 bg-surface text-textMuted hover:text-dark rounded-full text-sm font-semibold transition-colors">Penyuluhan</button>
+            <!-- Sleek Filter (Added onclick functions for sorting) -->
+            <div class="flex flex-wrap justify-center gap-3 mb-16" id="gallery-filters">
+                <button onclick="filterGallery('semua', this)" class="px-6 py-2.5 bg-dark text-white rounded-full text-sm font-semibold transition-colors filter-btn">Semua</button>
+                <button onclick="filterGallery('litigasi', this)" class="px-6 py-2.5 bg-surface text-textMuted hover:text-dark rounded-full text-sm font-semibold transition-colors filter-btn">Litigasi</button>
+                <button onclick="filterGallery('penyuluhan', this)" class="px-6 py-2.5 bg-surface text-textMuted hover:text-dark rounded-full text-sm font-semibold transition-colors filter-btn">Penyuluhan</button>
             </div>
 
-            <!-- Modern Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Image Card -->
-                <div class="rounded-3xl overflow-hidden group cursor-pointer img-zoom-hover relative">
-                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80" class="w-full h-72 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                        <p class="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform">Pendampingan Sidang</p>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity delay-100">PN Jakarta Timur</p>
+            <!-- Modern Grid (Redesigned Layout & Clickable) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+                
+                <!-- Image Card 1: Litigasi -->
+                <div class="gallery-item litigasi bg-white rounded-3xl p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-soft transition-all duration-300 flex flex-col group"
+                     onclick="openPhotoDetail('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=1200&q=80', 'Pendampingan Sidang', 'Pendampingan sidang dan pembelaan hak masyarakat di Pengadilan Negeri Jakarta Timur.')">
+                    <h3 class="text-xl font-bold text-textDark mb-4 text-center group-hover:text-primary transition-colors">Pendampingan Sidang</h3>
+                    <div class="w-full rounded-2xl overflow-hidden mb-4 flex-grow relative">
+                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
+                    <p class="text-textMuted text-sm text-center">PN Jakarta Timur</p>
                 </div>
-                <div class="rounded-3xl overflow-hidden group cursor-pointer img-zoom-hover relative">
-                    <img src="https://images.unsplash.com/photo-1505664173696-072895782729?auto=format&fit=crop&w=600&q=80" class="w-full h-72 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                        <p class="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform">MoU POSBANKUM</p>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity delay-100">Kelurahan Setempat</p>
+                
+                <!-- Image Card 2: Kerjasama/Lainnya -->
+                <div class="gallery-item kerjasama bg-white rounded-3xl p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-soft transition-all duration-300 flex flex-col group"
+                     onclick="openPhotoDetail('https://images.unsplash.com/photo-1505664173696-072895782729?auto=format&fit=crop&w=1200&q=80', 'MoU POSBANKUM', 'Penandatanganan kerja sama (MoU) POSBANKUM bersama aparat kelurahan setempat untuk mempermudah akses keadilan.')">
+                    <h3 class="text-xl font-bold text-textDark mb-4 text-center group-hover:text-primary transition-colors">MoU POSBANKUM</h3>
+                    <div class="w-full rounded-2xl overflow-hidden mb-4 flex-grow relative">
+                        <img src="https://images.unsplash.com/photo-1505664173696-072895782729?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
+                    <p class="text-textMuted text-sm text-center">Kelurahan Setempat</p>
                 </div>
-                <div class="rounded-3xl overflow-hidden group cursor-pointer img-zoom-hover relative">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" class="w-full h-72 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                        <p class="text-white font-bold text-lg translate-y-2 group-hover:translate-y-0 transition-transform">Penyuluhan Warga</p>
-                        <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity delay-100">Edukasi Hukum</p>
+                
+                <!-- Image Card 3: Penyuluhan -->
+                <div class="gallery-item penyuluhan bg-white rounded-3xl p-6 shadow-sm border border-gray-100 cursor-pointer hover:shadow-soft transition-all duration-300 flex flex-col group"
+                     onclick="openPhotoDetail('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80', 'Penyuluhan Warga', 'Program Edukasi dan Penyuluhan Hukum agar masyarakat semakin memahami hak serta kewajibannya di mata hukum.')">
+                    <h3 class="text-xl font-bold text-textDark mb-4 text-center group-hover:text-primary transition-colors">Penyuluhan Warga</h3>
+                    <div class="w-full rounded-2xl overflow-hidden mb-4 flex-grow relative">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
+                    <p class="text-textMuted text-sm text-center">Edukasi Hukum</p>
                 </div>
+
             </div>
         </div>
     </main>
@@ -839,6 +857,26 @@
         </div>
     </main>
 
+    <!-- ========================================== -->
+    <!-- PAGE: PHOTO DETAIL (Khusus Gambar Klik) -->
+    <!-- ========================================== -->
+    <main id="page-photo-detail" class="app-page hidden flex-grow bg-white">
+        <div class="container mx-auto px-4 lg:px-8 py-10 max-w-5xl">
+            <button onclick="navigate(previousPage)" class="mb-8 text-primary font-semibold flex items-center gap-2 hover:text-red-800 transition-colors w-fit p-2 pr-4 rounded-lg bg-red-50">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </button>
+            <div class="text-center mb-8">
+                <h1 id="detailPhotoTitle" class="text-3xl md:text-5xl font-bold text-textDark font-poppins mb-4">Judul Foto</h1>
+            </div>
+            <div class="rounded-3xl overflow-hidden shadow-2xl mb-8 flex justify-center bg-surface p-4 border border-gray-200 min-h-[50vh]">
+                <img id="detailPhotoImage" src="" alt="Detail" class="max-w-full h-auto max-h-[70vh] object-contain">
+            </div>
+            <div class="text-center max-w-3xl mx-auto bg-surface p-6 rounded-2xl border border-gray-100">
+                <p id="detailPhotoDesc" class="text-textDark text-lg leading-relaxed font-medium">Deskripsi Foto</p>
+            </div>
+        </div>
+    </main>
+
     <footer class="bg-white border-t border-gray-100 pt-20 pb-10 mt-auto">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -903,6 +941,8 @@
     </div>
 
     <script>
+        let previousPage = 'home'; // Untuk mencatat halaman sebelum membuka photo detail
+
         function handleFormSubmit(event) {
             event.preventDefault();
             event.target.reset();
@@ -923,7 +963,48 @@
             document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
+        function filterGallery(category, btnElement) {
+            // Update button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-dark', 'text-white');
+                btn.classList.add('bg-surface', 'text-textMuted', 'hover:text-dark');
+            });
+            btnElement.classList.remove('bg-surface', 'text-textMuted', 'hover:text-dark');
+            btnElement.classList.add('bg-dark', 'text-white');
+
+            // Filter items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'semua' || item.classList.contains(category)) {
+                    item.style.display = 'flex'; // Pakai flex karena design galeri baru menggunakan flex-col
+                    // Beri sedikit animasi saat muncul
+                    item.style.animation = 'none';
+                    void item.offsetWidth;
+                    item.style.animation = 'fadeSlideUp 0.4s ease forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function openPhotoDetail(imgSrc, title, desc) {
+            // Pasang data ke halaman detail foto
+            document.getElementById('detailPhotoImage').src = imgSrc;
+            document.getElementById('detailPhotoTitle').innerText = title;
+            document.getElementById('detailPhotoDesc').innerText = desc;
+            
+            // Pindah ke page photo detail
+            navigate('photo-detail');
+        }
+
         function navigate(pageId) {
+            // Record the previous page just in case we are opening the photo detail
+            const currentVisible = document.querySelector('.app-page:not(.hidden)');
+            if (currentVisible && currentVisible.id !== 'page-photo-detail' && currentVisible.id !== ('page-' + pageId)) {
+                previousPage = currentVisible.id.replace('page-', '');
+            }
+
             // Hide all pages
             document.querySelectorAll('.app-page').forEach(page => {
                 page.classList.add('hidden');
@@ -941,15 +1022,17 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             document.getElementById('mobileMenu').classList.add('hidden');
             
-            // Update nav styling
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-primary');
-                link.classList.add('text-textMuted');
-            });
-            document.querySelectorAll(`.nav-link[onclick*="${pageId}"]`).forEach(link => {
-                 link.classList.remove('text-textMuted');
-                 link.classList.add('text-primary');
-            });
+            // Update nav styling (kecuali kalau masuk ke page photo-detail agar indikator nav tetap di halaman asalnya)
+            if(pageId !== 'photo-detail') {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('text-primary');
+                    link.classList.add('text-textMuted');
+                });
+                document.querySelectorAll(`.nav-link[onclick*="${pageId}"]`).forEach(link => {
+                     link.classList.remove('text-textMuted');
+                     link.classList.add('text-primary');
+                });
+            }
         }
 
         window.onload = function() { navigate('home'); };
